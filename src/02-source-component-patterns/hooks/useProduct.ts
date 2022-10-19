@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product, onChangeArgs } from "../interfaces/interfaces";
 
 interface useProductArgs {
@@ -14,13 +14,7 @@ export const useProduct = ({
 }: useProductArgs) => {
   const [counter, setCounter] = useState(value);
 
-  const isControlled = useRef(!!onChange); //con esto vemos si el onChange esta siendo controlado, o sea si fue llamado
-
   const increaseBy = (value: number) => {
-    if (isControlled.current) {
-      return onChange!({ count: value, product });
-    }
-
     const newValue = Math.max(counter + value, 0);
 
     setCounter(newValue); //lo que esta linea hace es que no pueda ser un valor menor a 0
